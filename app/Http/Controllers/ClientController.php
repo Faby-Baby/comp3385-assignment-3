@@ -23,7 +23,7 @@ class ClientController extends Controller
 
         $file = $request->file('logo');
         $filename = time() . '.' . $file->getClientOriginalExtension();
-        $path = $file->storeAs('public/company_logos', $filename);
+        $path = $file->storeAs('company_logos', $filename, 'public');
 
         $client = new Client();
         $client->name = $request->input('name');

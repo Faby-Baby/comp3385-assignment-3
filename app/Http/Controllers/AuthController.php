@@ -15,7 +15,7 @@ class AuthController extends Controller
     public function store(Request $request): RedirectResponse {
         $validated = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|'
+            'password' => 'required'
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -26,5 +26,13 @@ class AuthController extends Controller
 
         return redirect('/dashboard')->with('success', 'Login successful');
 
+    }
+
+    public function logout(Request $request) : RedirectResponse {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('success', 'User successfully logged out');
     }
 }

@@ -12,6 +12,7 @@
     @endif
 
     <form action="/clients" enctype="multipart/form-data" method="post">
+        @csrf
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="mb-3">
             <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
